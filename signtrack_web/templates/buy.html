@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+{% block title %}Upgrade to Pro - SignTrack{% endblock %}
+{% block content %}
+<div class="container" style="max-width:600px;margin:2rem auto;">
+    <div class="text-center mb-3">
+        <h2>🚀 Upgrade to SignTrack Pro</h2>
+        <p style="color:var(--gray-600);">Unlock unlimited usage and premium features</p>
+    </div>
+    <div class="card" style="background:linear-gradient(135deg, #ffeaa7 0%, #fab1a0 100%);color:var(--dark-color);margin-bottom:2rem;">
+        <h3>✨ Pro Features</h3>
+        <ul style="list-style:none;padding:0;">
+            <li style="margin:0.5rem 0;">✅ Unlimited daily usage</li>
+            <li style="margin:0.5rem 0;">✅ Priority customer support</li>
+            <li style="margin:0.5rem 0;">✅ Advanced gesture customization</li>
+            <li style="margin:0.5rem 0;">✅ No ads or interruptions</li>
+        </ul>
+    </div>
+    <form method="POST">
+        <div class="form-group">
+            <label for="months" class="form-label">Choose Your Plan</label>
+            <select name="months" id="months" class="form-control form-select" required>
+                <option value="">Select a plan...</option>
+                <option value="1">1 Month – ₹50 (Most Flexible)</option>
+                <option value="3">3 Months – ₹120 (Save ₹30)</option>
+                <option value="6">6 Months – ₹200 (Save ₹100)</option>
+                <option value="12">1 Year – ₹350 (Save ₹250) 🔥 Best Value</option>
+            </select>
+        </div>
+        <button type="submit" class="btn btn-primary btn-lg" style="width:100%;">
+            💳 Purchase Pro Plan
+        </button>
+    </form>
+    <div class="text-center mt-3">
+        <p style="color:var(--gray-600);font-size:0.875rem;">
+            Secure payment processing. Cancel anytime.
+        </p>
+    </div>
+</div>
+{% endblock %}

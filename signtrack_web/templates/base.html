@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <title>{% block title %}SignTrack - Control Your Desktop with Hand Gestures{% endblock %}</title>
+    <link rel="stylesheet" href="{{ url_for('static',filename='style.css') }}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <meta name="description" content="SignTrack - Revolutionary hand gesture control for your desktop. Control your computer with simple hand movements.">
+</head>
+<body>
+    <header>
+        <div class="header-container">
+            <a href="{{ url_for('home') }}" class="logo">SignTrack</a>
+            <nav class="nav-links">
+                {% if session.get("user_id") %}
+                    <a href="{{ url_for('dashboard') }}">Dashboard</a>
+                    {% if session.get("is_admin") %}
+                        <a href="{{ url_for('admin_dashboard') }}">Admin</a>
+                    {% endif %}
+                    <a href="{{ url_for('logout') }}" class="btn btn-outline">Logout</a>
+                {% else %}
+                    <a href="{{ url_for('login') }}">Login</a>
+                    <a href="{{ url_for('register') }}" class="btn btn-primary">Get Started</a>
+                {% endif %}
+            </nav>
+        </div>
+    </header>
+    <main>
+        {% with messages=get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                {% for category,message in messages %}
+                    <div class="alert alert-{{ 'error' if category=='error' else 'success' if category=='success' else 'info' }}">
+                        {{ message }}
+                    </div>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+        {% block content %}{% endblock %}
+    </main>
+    <script>
+        document.addEventListener('DOMContentLoaded',function(){
+            const forms=document.querySelectorAll('form');
+            forms.forEach(form=>{
+                form.addEventListener('submit',function(e){
+                    const submitBtn=form.querySelector('button[type="submit"]');
+                    if(submitBtn){
+                        submitBtn.innerHTML='<span class="loading"></span> Processing...';
+                        submitBtn.disabled=true;
+                    }
+                });
+            });
+            const alerts=document.querySelectorAll('.alert');
+            alerts.forEach(alert=>{
+                setTimeout(()=>{
+                    alert.style.opacity='0';
+                    setTimeout(()=>alert.remove(),300);
+                },5000);
+            });
+        });
+    </script>
+</body>
+</html>

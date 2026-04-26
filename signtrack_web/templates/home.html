@@ -1,0 +1,53 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="container text-center">
+    <h1>Welcome to SignTrack</h1>
+    <p style="font-size:1.25rem;color:var(--gray-600);margin-bottom:2rem;">
+        Revolutionary hand gesture control for your desktop. Control your computer with simple hand movements.
+    </p>
+    <div class="grid grid-3" style="margin:3rem 0;">
+        <div class="card">
+            <h3>👊 Fist</h3>
+            <p><strong>Left Mouse Click</strong><br>Perform left-click actions with a closed fist</p>
+        </div>
+        <div class="card">
+            <h3>🖐️ Five Fingers</h3>
+            <p><strong>Idle / Move Cursor</strong><br>Move cursor freely with an open palm</p>
+        </div>
+        <div class="card">
+            <h3>✌️ Two Fingers</h3>
+            <p><strong>Scroll Vertically</strong><br>Scroll through content with peace sign gesture</p>
+        </div>
+        <div class="card">
+            <h3>☝️ One Finger</h3>
+            <p><strong>Precise Pointer Control</strong><br>Move cursor with precise control using index finger</p>
+        </div>
+        <div class="card">
+            <h3>👍 Thumbs Up</h3>
+            <p><strong>Switch Tab (Alt + Tab)</strong><br>Switch between applications and tabs</p>
+        </div>
+        <div class="card">
+            <h3>👎 Thumbs Down</h3>
+            <p><strong>Close Tab/Window (Alt + F4)</strong><br>Close current tab or window</p>
+        </div>
+    </div>
+    {% if session.get('user_id') %}
+        <div class="d-flex gap-3 justify-center" style="justify-content:center;margin-top:2rem;">
+            <a href="{{ url_for('download') }}" class="btn btn-primary btn-lg">
+                ⬇️ Download Now
+            </a>
+            <a href="{{ url_for('dashboard') }}" class="btn btn-outline btn-lg">
+                Go to Dashboard
+            </a>
+        </div>
+    {% else %}
+        <div class="card" style="background:linear-gradient(135deg, #667eea 0%, #764ba2 100%);color:white;margin-top:2rem;">
+            <h3>Ready to Get Started?</h3>
+            <p style="margin-bottom:1.5rem;">Join thousands of users who are already controlling their desktops with hand gestures!</p>
+            <a href="{{ url_for('register') }}" class="btn btn-success btn-lg">
+                Create Free Account
+            </a>
+        </div>
+    {% endif %}
+</div>
+{% endblock %}

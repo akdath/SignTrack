@@ -1,0 +1,91 @@
+{% extends "base.html" %}
+{% block title %}Dashboard - SignTrack{% endblock %}
+{% block content %}
+<div class="container">
+    <div class="d-flex justify-between align-center mb-3">
+        <div>
+            <h2>Welcome back, {{ user.name }}! 👋</h2>
+            <p style="color:var(--gray-600);">Manage your SignTrack experience</p>
+        </div>
+        <div class="status-badge status-{{ user.status }}">
+            {{ user.status|capitalize }} Plan
+        </div>
+    </div>
+    <div class="grid grid-2">
+        <div class="card">
+            <div class="card-header">
+                <h3>Account Status</h3>
+            </div>
+            {% if user.status=='pro' %}
+                <div class="alert alert-success">
+                    <strong>🎉 Pro Plan Active!</strong><br>
+                    Your pro plan expires on: <strong>{{ user.pro_expiry.strftime('%B %d, %Y') }}</strong>
+                </div>
+            {% else %}
+                <div class="alert alert-info">
+                    <strong>Free Plan</strong><br>
+                    Daily usage time: <strong>{{ (user.time_remaining // 60) }} minutes remaining</strong>
+                </div>
+            {% endif %}
+            <div class="d-flex gap-2 mt-3">
+                <a href="{{ url_for('buy') }}" class="btn btn-primary">
+                    {% if user.status=='pro' %}
+                        ⭐ Extend Pro
+                    {% else %}
+                        🚀 Upgrade to Pro
+                    {% endif %}
+                </a>
+            </div>
+        </div>
+        <div class="card">
+            <div class="card-header">
+                <h3>Quick Actions</h3>
+            </div>
+            <div class="d-flex gap-2" style="flex-direction:column;">
+                <a href="{{ url_for('download') }}" class="btn btn-success">
+                    ⬇️ Download SignTrack App
+                </a>
+                <a href="#" class="btn btn-outline" onclick="showGestureGuide()">
+                    📖 View Gesture Guide
+                </a>
+            </div>
+        </div>
+    </div>
+    <div class="card mt-3">
+        <div class="card-header">
+            <h3>Gesture Controls</h3>
+        </div>
+        <div class="grid grid-3">
+            <div style="padding:1rem;background:var(--gray-50);border-radius:var(--border-radius);">
+                <h4>👊 Fist</h4>
+                <p>Left Mouse Click</p>
+            </div>
+            <div style="padding:1rem;background:var(--gray-50);border-radius:var(--border-radius);">
+                <h4>🖐️ Five Fingers</h4>
+                <p>Idle / Move Cursor</p>
+            </div>
+            <div style="padding:1rem;background:var(--gray-50);border-radius:var(--border-radius);">
+                <h4>✌️ Two Fingers</h4>
+                <p>Scroll Vertically</p>
+            </div>
+            <div style="padding:1rem;background:var(--gray-50);border-radius:var(--border-radius);">
+                <h4>☝️ One Finger</h4>
+                <p>Precise Pointer Control</p>
+            </div>
+            <div style="padding:1rem;background:var(--gray-50);border-radius:var(--border-radius);">
+                <h4>👍 Thumbs Up</h4>
+                <p>Switch Tab (Alt + Tab)</p>
+            </div>
+            <div style="padding:1rem;background:var(--gray-50);border-radius:var(--border-radius);">
+                <h4>👎 Thumbs Down</h4>
+                <p>Close Tab/Window (Alt + F4)</p>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+function showGestureGuide(){
+    alert('SignTrack Gesture Guide:\n\n👊 Fist - Left Mouse Click\n🖐️ Five Fingers - Idle / Move Cursor\n✌️ Two Fingers - Scroll Vertically\n☝️ One Finger - Precise Pointer Control\n👍 Thumbs Up - Switch Tab (Alt + Tab)\n👎 Thumbs Down - Close Tab/Window (Alt + F4)\n\nMake sure your camera can see your hand clearly for best results!');
+}
+</script>
+{% endblock %}

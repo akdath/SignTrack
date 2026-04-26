@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+{% block title %}Login - SignTrack{% endblock %}
+{% block content %}
+<div class="container" style="max-width:400px;margin:3rem auto;">
+    <div class="text-center mb-3">
+        <h2>Welcome Back</h2>
+        <p style="color:var(--gray-600);">Sign in to your SignTrack account</p>
+    </div>
+    <form method="POST">
+        <div class="form-group">
+            <label for="email" class="form-label">Email Address</label>
+            <input type="email" id="email" name="email" class="form-control" placeholder="Enter your email" required>
+        </div>
+        <div class="form-group">
+            <label for="password" class="form-label">Password</label>
+            <input type="password" id="password" name="password" class="form-control" placeholder="Enter your password" required>
+        </div>
+        <button type="submit" class="btn btn-primary" style="width:100%;">
+            Sign In
+        </button>
+    </form>
+    <div class="text-center mt-3">
+        <p>Don't have an account? <a href="{{ url_for('register') }}" style="color:var(--primary-color);font-weight:500;">Create one here</a></p>
+    </div>
+    {% if error %}
+        <div class="alert alert-error mt-3">
+            {{ error }}
+        </div>
+    {% endif %}
+</div>
+{% endblock %}
