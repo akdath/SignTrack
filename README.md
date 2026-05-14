@@ -29,7 +29,7 @@ SignTrack is an AI-powered desktop automation application that allows users to c
 * TensorFlow
 * Keras
 * CustomTkinter
-* * NumPy
+* NumPy
 * PyAutoGUI
 * Keyboard
 * Multithreading
