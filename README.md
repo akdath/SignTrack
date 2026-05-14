@@ -18,13 +18,21 @@ SignTrack is an AI-powered desktop automation application that allows users to c
 ## Technologies Used
 
 * Python
+* Flask
+* Flask-SQLAlchemy
+* SQLite
+* HTML5
+* CSS3
+* JavaScript
 * OpenCV
 * MediaPipe
-* TensorFlow / Keras
+* TensorFlow
+* Keras
 * CustomTkinter
-* SQLite
+* * NumPy
 * PyAutoGUI
 * Keyboard
+* Multithreading
 
 ## Gesture Controls
 
